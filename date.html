@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
         body{
-            background: #222222;
-            color: #eeeeee
+            color: #222;
         }
-        .centerf {
+        #centerf {
             width: 100%;
             height: 200px;
-            background: #444444;
 
             position: absolute;
             top:0;
@@ -24,10 +23,9 @@
             
             margin: auto;
         }
-        .centerw {
+        #centerw {
             width: 100%;
             height: 175px;
-            background: #444444;
 
             position: absolute;
             top:0;
@@ -36,13 +34,13 @@
             right: 0;
 
             margin: auto;
-            border-top: solid #222222 10px;
-            border-bottom:solid #222222 10px;
+            border-top: solid 10px;
+            border-bottom:solid 10px;
         }
-        .centerm {
+        #centerm {
             width: 300px;
             height: 100px;
-            background: #333333;
+            background: #999;
 
             position: absolute;
             top:0;
@@ -52,8 +50,8 @@
 
             margin: auto;
             border-radius: 25px;
-            border: outset #111111 10px;
-            box-shadow: 7px 10px #111111;
+            border: outset #888 10px;
+            box-shadow: 7px 10px #888;
         }
         .center {
             width: 250px;
@@ -68,12 +66,12 @@
             margin: auto;
 
             font-size: 30px;
-            text-shadow: 2px 2px 1px #777777;
+            text-shadow: 2px 2px 2px #111;
         }
     </style>
     <script>
         function startTime() {
-            var date = new Date("Mar 02, 2019 08:25:00 PM"); // Mar 02, 2019 08:25:00 PM
+            var date = new Date("Mar 02, 2019 08:30:00 PM"); // Mar 02, 2019 08:30:00 PM
 
             var today = new Date();
 
@@ -83,17 +81,38 @@
             var h = Math.ceil((timeDiff / (1000 * 3600)) % 24)-1;
             var m = Math.ceil(timeDiff / (1000 * 60 ) % 60)-1;
             var s = Math.ceil(timeDiff / (1000) % 60)-1;
+            d = checkTime(d);
             h = checkTime(h);
             m = checkTime(m);
             s = checkTime(s);
 
-            console.log(timeDiff)
+            timecolor = ("#" + checkTime(parseInt(d)*3+6) + checkTime(parseInt(h)*3+27) + checkTime(parseInt(m)+39));
+            timecolor2 = ("#" + checkTime(parseInt(d)*3) + checkTime(parseInt(h)*4) + m);
 
             if(date.getTime() <= today.getTime()) {
-                d = '0';
+                d = '00';
                 h = '00';
                 m = '00';
                 s = '00';
+
+                rdcolor = Math.floor(Math.random() * 799999) + 100000;
+                rdcolor2 = rdcolor + 40404;
+
+                rdcolor = ("#" + rdcolor)
+                rdcolor2 = ("#" + rdcolor2)
+
+                $("body").css("background", rdcolor2);
+                $("#centerw").css("border-color", rdcolor2);
+                $("#centerw").css("background", rdcolor);
+                $("#centerf").css("background", rdcolor);
+                $("#centerm").css("box-shadow", ("7px 10px " + rdcolor2));
+            }
+            else {
+                $("body").css("background", timecolor2);
+                $("#centerw").css("border-color", timecolor2);
+                $("#centerw").css("background", timecolor);
+                $("#centerf").css("background", timecolor);
+                $("#centerm").css("box-shadow", ("7px 10px " + timecolor2));
             }
 
             document.getElementById('timer').innerHTML =  " " + d + "d, " + h + "h:" + m + "m:" + s + "s";
@@ -107,10 +126,10 @@
         }
     </script>
 </head>
-<body onload="startTime()">
-    <div class="centerf">
-        <div class="centerw">
-            <div class="centerm">
+<body onload="startTime()" class="body">
+    <div id="centerf">
+        <div id="centerw">
+            <div id="centerm">
                 <div class="center" id="timer"></div>
             </div>
         </div>
