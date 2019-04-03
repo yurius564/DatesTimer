@@ -70,8 +70,13 @@
         }
     </style>
     <script>
+        var timecolor = Math.floor(Math.random() * 799999) + 100000;
+        var timecolor2 = timecolor + 40404;
+        var timecolor = ("#" + timecolor);
+        var timecolor2 = ("#" + timecolor2);
+
         function startTime() {
-            var date = new Date("Mar 02, 2019 10:00:00 PM"); // Mar 02, 2019 10:00:00 PM
+            var date = new Date("May 11, 2019 01:00:00 AM"); // May 11, 2019 01:00:00 AM
 
             var today = new Date();
 
@@ -86,8 +91,9 @@
             m = checkTime(m);
             s = checkTime(s);
 
-            timecolor = ("#" + checkTime(parseInt(d)*3+6) + checkTime(parseInt(h)*3+27) + checkTime(parseInt(m)+39));
-            timecolor2 = ("#" + checkTime(parseInt(d)*3) + checkTime(parseInt(h)*4) + m);
+            // timecolor = ("#" + checkTime(parseInt(d)*3+6) + checkTime(parseInt(h)*3+27) + checkTime(parseInt(m)+39));
+            // timecolor2 = ("#" + checkTime(parseInt(d)*3) + checkTime(parseInt(h)*4) + m);
+
 
             if(date.getTime() <= today.getTime()) {
                 d = '00';
